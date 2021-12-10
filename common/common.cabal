@@ -9,6 +9,8 @@ library
                , obelisk-route
                , mtl
                , text
+               , aeson
+               , postgresql-simple
   exposed-modules:
     Common.Api
     Common.Route

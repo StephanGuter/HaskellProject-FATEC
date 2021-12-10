@@ -2,6 +2,7 @@
 , obelisk ? import ./.obelisk/impl {
     inherit system;
     iosSdkVersion = "13.2";
+    config.android_sdk.accept_license = true;
 
     # You must accept the Android Software Development Kit License Agreement at
     # https://developer.android.com/studio/terms in order to build Android apps.
@@ -15,9 +16,13 @@
   }
 }:
 with obelisk;
-project ./. ({ ... }: {
-  android.applicationId = "systems.obsidian.obelisk.examples.minimal";
-  android.displayName = "Obelisk Minimal Example";
-  ios.bundleIdentifier = "systems.obsidian.obelisk.examples.minimal";
-  ios.bundleName = "Obelisk Minimal Example";
+project ./. ({ pkgs, hackGet,... }: {
+  android.applicationId = "systems.obsidian.obelisk.examples.raf";
+  android.displayName = "Obelisk RAF";
+  ios.bundleIdentifier = "systems.obsidian.obelisk.examples.raf";
+  ios.bundleName = "Obelisk RAF";
+
+  packages = {
+    psql = hackGet .dep/psql;
+  };
 })
